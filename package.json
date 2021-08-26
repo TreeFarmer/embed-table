@@ -1,11 +1,11 @@
 {
-  "name": "embedtable",
+  "name": "embed-table",
   "version": "1.0.0",
   "description": "Create neat text tables for MessageEmbed",
-  "main": "src/index.ts",
+  "main": "build/index.js",
   "type": "module",
   "engines": {
-    "node": ">=12.3.0"
+    "node": ">=16.6.0"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -20,17 +20,17 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/TreeFarmer/embedtable.js.git"
+    "url": "git+https://github.com/TreeFarmer/embed-table.git"
   },
   "author": "Fyrlex and NonStop",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/TreeFarmer/embedtable.js/issues"
+    "url": "https://github.com/TreeFarmer/embed-table/issues"
   },
-  "homepage": "https://github.com/TreeFarmer/embedtable.js#readme",
-  "devDependencies": {},
+  "homepage": "https://github.com/TreeFarmer/embed-table#readme",
   "keywords": [
     "discord.js",
     "messageembed"
-  ]
+  ],
+  "devDependencies": {}
 }

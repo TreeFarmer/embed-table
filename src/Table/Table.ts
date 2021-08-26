@@ -1,38 +1,35 @@
 import { EmbedField } from 'discord.js';
-import { TableData } from '../typings/TableData';
-import { Row } from './Row';
+import { TableData, TableType } from '../typings/TableData.js';
+import { Row } from './Row.js';
 
-export class Table {
-
+export class Table<T extends TableData> {
   private readonly _columnNames: string;
   private readonly _rows: string[];
   private readonly _columnStarts: number[]
   private readonly _nameStarts: number[]
   private readonly _names: string[]
-  private readonly _startText?: string
-  private readonly _endText?: string
-  private readonly _numbered?: boolean
-  private readonly _dashed?: boolean
+  private readonly _startText: string = '';
+  private readonly _endText: string = '';
+  private readonly _number: number = 0;
+  private readonly _dashed: '' | '- ' = '';
 
-  constructor(data: TableData) {
+  constructor(data: T) {
     this._columnNames = '';
     this._rows = [];
     this._columnStarts = data.columnStarts;
     this._nameStarts = data.nameStarts;
     this._names = data.names;
+    this._endText = data.end ?? '';
 
-    if ('start' in data) this._startText = data.start;
-    if ('end' in data) this._endText = data.end;
-    if ('numbered' in data) this._numbered = data.numbered;
-    if ('dashed' in data) this._dashed = data.dashed;
+    if (data.type === TableType.STARTTEXT) this._startText = data.start;
+    else if (data.type === TableType.NUMBERED) this._number = 1;
+    else if (data.type === TableType.DASHED) this._dashed = '- ';
 
-    for (let i = 0; i < this._names.length; i++) {
-      this._columnNames += this.padColumnName(i);
-    }
+    for (let i = 0; i < this._names.length; i++) this._columnNames += this.padColumnName(i);
   }
 
   public addRow(...columns: string[]): this {
-    this._rows.push(new Row(columns, this._columnStarts).toString());
+    this._rows.push('**\`' + this._startText + this._dashed + (this._number ? `${this._number}. ` : '') + new Row(columns, this._columnStarts).toString() + this._endText + '\`**');
 
     return this;
   }
