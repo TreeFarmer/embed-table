@@ -3,29 +3,29 @@ import { TableData, TableType } from '../typings/TableData.js';
 import { Row } from './Row.js';
 
 export class Table<T extends TableData> {
-  private readonly _columnNames: string;
+  private readonly _titleString: string;
   private readonly _rows: string[];
   private readonly _columnStarts: number[]
-  private readonly _nameStarts: number[]
-  private readonly _names: string[]
+  private readonly _titleStarts: number[]
+  private readonly _titles: string[]
   private readonly _startText: string = '';
   private readonly _endText: string = '';
   private readonly _number: number = 0;
   private readonly _dashed: '' | '- ' = '';
 
   constructor(data: T) {
-    this._columnNames = '';
+    this._titleString = '';
     this._rows = [];
     this._columnStarts = data.columnStarts;
-    this._nameStarts = data.nameStarts;
-    this._names = data.names;
+    this._titleStarts = data.titleStarts;
+    this._titles = data.titles;
     this._endText = data.end ?? '';
 
     if (data.type === TableType.STARTTEXT) this._startText = data.start;
     else if (data.type === TableType.NUMBERED) this._number = 1;
     else if (data.type === TableType.DASHED) this._dashed = '- ';
 
-    for (let i = 0; i < this._names.length; i++) this._columnNames += this.padColumnName(i);
+    for (let i = 0; i < this._titles.length; i++) this._titleString += this.padColumnTitle(i);
   }
 
   public addRow(...columns: string[]): this {
@@ -36,7 +36,7 @@ export class Table<T extends TableData> {
 
   public field(): EmbedField {
     const field = {
-      name: this._columnNames,
+      name: this._titleString,
       value: this._rows.join('\n'),
       inline: false
     };
@@ -50,7 +50,9 @@ export class Table<T extends TableData> {
     this._rows.length = 0;
   }
 
-  private padColumnName(i: number): string {
-    return '\u200b '.repeat(this._nameStarts[i]! - (this._nameStarts[i - 1] ?? 0) - (this._names[i - 1]?.length ?? 0)) + this._names[i]!;
+  private padColumnTitle(i: number): string {
+    const title = this._titles[i]!.slice(0, (this._titleStarts[i + 1] ?? Infinity) - this._titleStarts[i]! - 1);
+    console.log((this._titleStarts[i + 1] ?? Infinity) - this._titleStarts[i]! - 1, this._titleStarts[i]! - (this._titleStarts[i - 1] ?? 0) - (this._titles[i - 1]?.length ?? 0), title);
+    return '\u200b '.repeat(this._titleStarts[i]! - (this._titleStarts[i - 1] ?? 0) - (this._titles[i - 1]?.length ?? 0)) + title!.slice(0, (this._titleStarts[i + 1] ?? Infinity) - this._titleStarts[i]! - 1);
   }
 }

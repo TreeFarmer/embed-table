@@ -16,6 +16,6 @@ export class Row {
   }
 
   private padColumn(i: number): string {
-    return '\u200b '.repeat(this._starts[i]! - (this._starts[i - 1]! ?? 0) - (this._columns[i - 1] ? (this._columns[i - 1] + '').length : 0)) + this._columns[i]!;
+    return '\u200b '.repeat(this._starts[i]! - (this._starts[i - 1]! ?? 0) - (this._columns[i - 1] ? (this._columns[i - 1] + '').length : 0)) + this._columns[i]!.slice(0, (this._starts[i + 1] ?? Infinity) - this._starts[i]!);
   }
 }

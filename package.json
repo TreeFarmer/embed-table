@@ -1,6 +1,7 @@
 {
   "name": "embed-table",
   "version": "1.0.0",
+  "author": "Fyrlex and NonStop",
   "description": "Create neat text tables for MessageEmbed",
   "main": "build/index.js",
   "type": "module",
@@ -22,7 +23,6 @@
     "type": "git",
     "url": "git+https://github.com/TreeFarmer/embed-table.git"
   },
-  "author": "Fyrlex and NonStop",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/TreeFarmer/embed-table/issues"

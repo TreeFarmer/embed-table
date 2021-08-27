@@ -7,16 +7,16 @@ export enum TableType {
 
 export interface BaseTableData {
   type: TableType.PLAIN | TableType.NUMBERED | TableType.DASHED,
-  names: string[],
-  nameStarts: number[],
+  titles: string[],
+  titleStarts: number[],
   columnStarts: number[],
   end?: string
 }
 
 export interface StartTableData {
   type: TableType.STARTTEXT,
-  names: string[],
-  nameStarts: number[],
+  titles: string[],
+  titleStarts: number[],
   columnStarts: number[],
   end?: string,
   start: string
