@@ -1,6 +1,6 @@
 import { EmbedField } from 'discord.js';
-import { TableData, TableType } from '../typings/TableData.js';
 import { Row } from './Row.js';
+import { TableData, TableType } from '../typings/TableData.js';
 
 export class Table<T extends TableData> {
   private readonly _titleString: string;
@@ -51,8 +51,6 @@ export class Table<T extends TableData> {
   }
 
   private padColumnTitle(i: number): string {
-    const title = this._titles[i]!.slice(0, (this._titleStarts[i + 1] ?? Infinity) - this._titleStarts[i]! - 1);
-    console.log((this._titleStarts[i + 1] ?? Infinity) - this._titleStarts[i]! - 1, this._titleStarts[i]! - (this._titleStarts[i - 1] ?? 0) - (this._titles[i - 1]?.length ?? 0), title);
-    return '\u200b '.repeat(this._titleStarts[i]! - (this._titleStarts[i - 1] ?? 0) - (this._titles[i - 1]?.length ?? 0)) + title!.slice(0, (this._titleStarts[i + 1] ?? Infinity) - this._titleStarts[i]! - 1);
+    return '\u200b '.repeat(this._titleStarts[i]! - (this._titleStarts[i - 1] ?? 0) - (this._titles[i - 1]?.length ?? 0)) + this._titles[i]!.slice(0, (this._titleStarts[i + 1] ?? Infinity) - this._titleStarts[i]! - 1);
   }
 }
