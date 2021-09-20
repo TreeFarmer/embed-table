@@ -1,4 +1,4 @@
-export * from './Table/Table.js';
-export * from './Table/Row.js';
+export * from './lib/Table.js';
+export * from './lib/Row.js';
 
 export * from './typings/TableData.js';

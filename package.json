@@ -1,23 +1,15 @@
 {
   "name": "embed-table",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": "Fyrlex and NonStop",
   "description": "Create neat text tables for MessageEmbed",
-  "main": "build/index.js",
-  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "engines": {
     "node": ">=16.6.0"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "dependencies": {
-    "@types/node": "^16.7.1",
-    "@typescript-eslint/eslint-plugin": "^4.29.3",
-    "@typescript-eslint/parser": "^4.29.3",
-    "discord.js": "^13.1.0",
-    "eslint": "^7.32.0",
-    "typescript": "^4.3.5"
+    "build": "tsc"
   },
   "repository": {
     "type": "git",
@@ -29,8 +21,17 @@
   },
   "homepage": "https://github.com/TreeFarmer/embed-table#readme",
   "keywords": [
-    "discord.js",
-    "messageembed"
+    "discord",
+    "discordjs",
+    "messageembed",
+    "table"
   ],
-  "devDependencies": {}
+  "devDependencies": {
+    "@types/node": "^16.7.1",
+    "@typescript-eslint/eslint-plugin": "^4.29.3",
+    "@typescript-eslint/parser": "^4.29.3",
+    "discord.js": "^13.1.0",
+    "eslint": "^7.32.0",
+    "typescript": "^4.3.5"
+  }
 }
