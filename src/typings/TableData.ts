@@ -1,25 +1,13 @@
 export enum TableType {
-  PLAIN,
-  STARTTEXT,
-  NUMBERED,
-  DASHED
+  PLAIN
 }
 
 export interface BaseTableData {
-  type: TableType.PLAIN | TableType.NUMBERED | TableType.DASHED,
   titles: string[],
   titleStarts: number[],
   columnStarts: number[],
+  start?: string
   end?: string
 }
 
-export interface StartTableData {
-  type: TableType.STARTTEXT,
-  titles: string[],
-  titleStarts: number[],
-  columnStarts: number[],
-  end?: string,
-  start: string
-}
-
-export type TableData = BaseTableData | StartTableData;
+export type TableData = BaseTableData;

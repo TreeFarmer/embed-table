@@ -1,6 +1,6 @@
 import { EmbedField } from 'discord.js';
 import { Row } from './Row.js';
-import { TableData, TableType } from '../typings/TableData.js';
+import { TableData } from '../typings/TableData.js';
 
 export class Table<T extends TableData> {
   private readonly _titleString: string;
@@ -10,8 +10,6 @@ export class Table<T extends TableData> {
   private readonly _titles: string[]
   private readonly _startText: string = '';
   private readonly _endText: string = '';
-  private readonly _number: number = 0;
-  private readonly _dashed: '' | '- ' = '';
 
   constructor(data: T) {
     this._titleString = '';
@@ -21,15 +19,11 @@ export class Table<T extends TableData> {
     this._titles = data.titles;
     this._endText = data.end ?? '';
 
-    if (data.type === TableType.STARTTEXT) this._startText = data.start;
-    else if (data.type === TableType.NUMBERED) this._number = 1;
-    else if (data.type === TableType.DASHED) this._dashed = '- ';
-
     for (let i = 0; i < this._titles.length; i++) this._titleString += this.padColumnTitle(i);
   }
 
   public addRow(...columns: string[]): this {
-    this._rows.push('**\`' + this._startText + this._dashed + (this._number ? `${this._number}. ` : '') + new Row(columns, this._columnStarts).toString() + this._endText + '\`**');
+    this._rows.push(this._startText + new Row(columns, this._columnStarts).toString() + this._endText);
 
     return this;
   }
