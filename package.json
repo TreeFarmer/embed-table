@@ -1,6 +1,6 @@
 {
   "name": "embed-table",
-  "version": "2.0.1",
+  "version": "2.0.0",
   "author": "Fyrlex and NonStop",
   "description": "Create neat text tables for MessageEmbed",
   "main": "dist/index.js",
