@@ -1,8 +1,8 @@
 {
   "name": "embed-table",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "author": "Fyrlex and NonStop",
-  "description": "Create neat text tables for MessageEmbed",
+  "description": "Create neat text tables for descriptions and fields of MessageEmbeds",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "engines": {
@@ -34,5 +34,8 @@
     "eslint": "^7.32.0",
     "typedoc": "^0.22.4",
     "typescript": "^4.3.5"
+  },
+  "directories": {
+    "doc": "docs"
   }
 }
