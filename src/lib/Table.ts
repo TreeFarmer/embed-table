@@ -17,6 +17,7 @@ export class Table<T extends TableData> {
     this._columnStarts = data.columnStarts;
     this._titleStarts = data.titleStarts;
     this._titles = data.titles;
+    this._startText = data.start ?? '';
     this._endText = data.end ?? '';
 
     for (let i = 0; i < this._titles.length; i++) this._titleString += this.padColumnTitle(i);
