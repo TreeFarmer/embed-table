@@ -1,7 +1,3 @@
-export enum TableType {
-  PLAIN
-}
-
 export interface BaseTableData {
   titles: string[],
   titleStarts: number[],
