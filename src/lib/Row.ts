@@ -1,3 +1,5 @@
+import { RowOptionData } from '../typings/index.js';
+
 export class Row {
   /**
    * The data to insert for each column
@@ -7,12 +9,17 @@ export class Row {
   /**
    * The starting indexes of each column
    */
-  private readonly _indexes: number[]
+  private readonly _indexes: number[];
 
   /**
-   * The number of spaces to pad on the end of the row
+   * The Table's default padEnd value
    */
   private readonly _pad: number;
+
+  /**
+   * A specific padEnd value for this row
+   */
+  private readonly _override: number | undefined;
 
   /**
    * Adds a new row to the Table
@@ -20,10 +27,11 @@ export class Row {
    * @param {number[]} starts 
    * @param {number} pad 
    */
-  constructor(columns: string[], indexes: number[], pad: number) {
+  public constructor(columns: string[], indexes: number[], pad: number, options?: RowOptionData) {
     this._columns = columns;
     this._indexes = indexes;
     this._pad = pad;
+    this._override = options?.override;
   }
 
   /**
@@ -34,7 +42,8 @@ export class Row {
     let res = '';
 
     for (let i = 0; i < this._columns.length; i++) res += this.padColumn(i);
-    return res.padEnd(res.length + this._pad);
+
+    return res.padEnd(res.length + (this._override ?? this._pad));
   }
 
   /**
