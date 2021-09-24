@@ -26,10 +26,15 @@ const table = new Table({
   padEnd: 3
 });
 
-table.addRow('1', '$120', '2');
+table.addRow(['1', '$120', '2'], { override: 4 });
+table.addRow(['72', '$10', '25'], { override: 0 });
+table.addRow(['614', '$1220', '12']);
 
 const field = table.field([inline])
 ```
+
+# Output
+![output](https://i.imgur.com/tQSKSJN.png)
 
 # API
 Read the documentation for embed-table @ [**embed-table.treefarmer.xyz**](https://embed-table.treefarmer.xyz/)
