@@ -24,6 +24,11 @@ export class Table {
   private readonly _rowIndexes: number[];
 
   /**
+   * Whether or not to include the Whitespace character (\u200b) in spacing (not required if using backticks for the start and end)
+   */
+  private readonly _whiteSpace: boolean | undefined;
+
+  /**
    * A string to add to the beginning of every row
    */
   public readonly start: string = '';
@@ -54,6 +59,7 @@ export class Table {
     this._titleIndexes = data.titleIndexes;
     this._rows = [];
     this._rowIndexes = data.rowIndexes;
+    this._whiteSpace = data.whiteSpace;
     this.start = data.start ?? '';
     this.end = data.end ?? '';
     this.padEnd = data.padEnd ?? 0;
@@ -68,7 +74,7 @@ export class Table {
    * @returns {this}
    */
   public addRow(columns: string[], options?: RowOptionData): this {
-    this._rows.push(this.start + new Row(columns, this._rowIndexes, this.padEnd, options).toString() + this.end);
+    this._rows.push(this.start + new Row(columns, this._rowIndexes, (this._whiteSpace ?? false), options).toString().padEnd(this._rowIndexes[this._rowIndexes.length - 1]! + (options?.override ?? 0 + this.padEnd), ' ') + this.end);
 
     return this;
   }
@@ -104,6 +110,6 @@ export class Table {
    * @returns {string} The padded title
    */
   private padColumnTitle(i: number): string {
-    return '\u200b '.repeat(this._titleIndexes[i]! - (this._titleIndexes[i - 1] ?? 0) - (this._titles[i - 1]?.length ?? 0)) + this._titles[i]!.slice(0, (this._titleIndexes[i + 1] ?? Infinity) - this._titleIndexes[i]! - 1);
+    return ' '.repeat(this._titleIndexes[i]! - (this._titleIndexes[i - 1] ?? 0) - (this._titles[i - 1]?.length ?? 0)) + this._titles[i]!.slice(0, (this._titleIndexes[i + 1] ?? Infinity) - this._titleIndexes[i]! - 1);
   }
 }

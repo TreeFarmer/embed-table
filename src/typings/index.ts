@@ -24,6 +24,10 @@ export interface TableData {
    * @see [String.prototype.padEnd()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/padEnd)
    */
   padEnd?: number
+  /**
+   * Whether or not to include the Whitespace character (\u200b) in spacing (not required if using backticks for the start and end)
+   */
+  whiteSpace?: boolean
 }
 
 export interface RowOptionData {

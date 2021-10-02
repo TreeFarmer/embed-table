@@ -12,14 +12,14 @@ export class Row {
   private readonly _indexes: number[];
 
   /**
-   * The Table's default padEnd value
-   */
-  private readonly _pad: number;
-
-  /**
    * A specific padEnd value for this row
    */
   private readonly _override: number | undefined;
+
+  /**
+   * Whether or not to include the Whitespace character (\u200b) in spacing (not required if using backticks for the start and end)
+   */
+  private _whiteSpace: boolean;
 
   /**
    * Adds a new row to the Table
@@ -27,11 +27,11 @@ export class Row {
    * @param {number[]} starts 
    * @param {number} pad 
    */
-  public constructor(columns: string[], indexes: number[], pad: number, options?: RowOptionData) {
+  public constructor(columns: string[], indexes: number[], whiteSpace: boolean, options?: RowOptionData) {
     this._columns = columns;
     this._indexes = indexes;
-    this._pad = pad;
     this._override = options?.override;
+    this._whiteSpace = whiteSpace;
   }
 
   /**
@@ -43,7 +43,7 @@ export class Row {
 
     for (let i = 0; i < this._columns.length; i++) res += this.padColumn(i);
 
-    return res.padEnd(res.length + (this._override ?? this._pad));
+    return res;
   }
 
   /**
@@ -52,6 +52,6 @@ export class Row {
    * @returns {string}
    */
   private padColumn(i: number): string {
-    return '\u200b '.repeat(this._indexes[i]! - (this._indexes[i - 1]! ?? 0) - (this._columns[i - 1] ? (this._columns[i - 1] + '').length : 0)) + this._columns[i]!.slice(0, (this._indexes[i + 1] ?? Infinity) - this._indexes[i]!);
+    return `${this._whiteSpace ? '\u200b ' : ' '}`.repeat(this._indexes[i]! - (this._indexes[i - 1]! ?? 0) - (this._columns[i - 1] ? (this._columns[i - 1] + '').length : 0)) + this._columns[i]!.slice(0, (this._indexes[i + 1] ?? Infinity) - this._indexes[i]!);
   }
 }
