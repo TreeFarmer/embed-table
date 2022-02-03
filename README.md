@@ -16,6 +16,7 @@ Install with `npm install embed-table` and it will be installed.
 # Basic Usage
 ```ts
 import { Table } from 'embed-table';
+import { MessageEmbed } from 'discord.js';
 
 const table = new Table({
   titles: ['Level', 'Money', 'Wins'],
@@ -31,6 +32,8 @@ table.addRow(['72', '$10', '25'], { override: 0 });
 table.addRow(['614', '$1220', '12']);
 
 const embed = new MessageEmbed().addFields(table.field())
+
+// Use this 'embed' when sending a message to a channel.
 ```
 
 # Output

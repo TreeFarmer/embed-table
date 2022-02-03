@@ -24,11 +24,6 @@ export class Table {
 	private readonly rowIndexes: number[];
 
 	/**
-	 * Whether or not to include the Whitespace character (\u200b) in spacing (not required if using backticks for the start and end)
-	 */
-	private readonly whiteSpace: boolean | undefined;
-
-	/**
 	 * A string to add to the beginning of every row
 	 */
 	public readonly start: string;
@@ -50,10 +45,15 @@ export class Table {
 	public readonly titleString: string;
 
 	/**
+	 * Whether or not to include the Whitespace character (\u200b) in spacing (not required if using backticks for the start and end)
+	 */
+	private readonly whiteSpace: boolean;
+
+	/**
 	 * Create a new Table
 	 * @param {TableData} data 
 	 */
-	public constructor({ rowIndexes, titleIndexes, titles, end = '', padEnd, start = '', whiteSpace }: TableData) {
+	public constructor({ rowIndexes, titleIndexes, titles, end = '', padEnd = 0, start = '', whiteSpace = false }: TableData) {
 		this.titleString = '';
 		this.titles = titles;
 		this.titleIndexes = titleIndexes;
@@ -61,7 +61,7 @@ export class Table {
 		this.rowIndexes = rowIndexes;
 		this.start = start;
 		this.end = end;
-		this.padEnd = padEnd ?? 0;
+		this.padEnd = padEnd;
 		this.whiteSpace = whiteSpace;
 
 		if (this.titles.length !== this.titleIndexes.length) throw new RangeError('The \'titles\' and \'titleIndex\' array must be of the same length.');
@@ -87,13 +87,15 @@ export class Table {
 	 * @returns {EmbedField} Use this when creating a MessageEmbed
 	 */
 	public field(inline?: boolean): EmbedField {
-		this.clear();
-
-		return {
+		const field: EmbedField = {
 			name: this.titleString,
 			value: this.rows.join('\n'),
 			inline: inline ?? false
 		};
+
+		this.clear();
+
+		return field;
 	}
 
 	/**
