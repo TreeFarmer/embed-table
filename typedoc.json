@@ -1,8 +1,8 @@
 {
-  "excludePrivate": true,
-  "excludeProtected": true,
-  "excludeExternals": true,
-  "tsconfig": "tsconfig.json",
-  "entryPoints": "src/index.ts",
-  "readme": "README.md"
+	"excludePrivate": true,
+	"excludeProtected": true,
+	"excludeExternals": true,
+	"tsconfig": "tsconfig.json",
+	"entryPoints": "src/index.ts",
+	"readme": "README.md"
 }

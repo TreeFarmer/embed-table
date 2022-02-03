@@ -1,207 +1,105 @@
 {
-  "env": {
-    "es2021": true,
-    "node": true
-  },
-  "extends": [
-    "plugin:@typescript-eslint/recommended"
-  ],
-  "parser": "@typescript-eslint/parser",
-  "parserOptions": {
-    "ecmaVersion": 12,
-    "sourceType": "module"
-  },
-  "plugins": [
-    "@typescript-eslint"
-  ],
-  "rules": {
-    "comma-dangle": [
-      "error",
-      "only-multiline"
-    ],
-    "@typescript-eslint/ban-ts-comment": 0,
-    "@typescript-eslint/indent": [
-      "error",
-      2
-    ],
-    "linebreak-style": [
-      "error",
-      "windows"
-    ],
-    "quotes": [
-      "error",
-      "single"
-    ],
-    "semi": [
-      "error",
-      "always"
-    ],
-    "@typescript-eslint/naming-convention": [
-      "error",
-      {
-        "selector": "default",
-        "format": [
-          "camelCase",
-          "snake_case"
-        ]
-      },
-      {
-        "selector": "variableLike",
-        "format": [
-          "camelCase",
-          "snake_case"
-        ],
-        "leadingUnderscore": "forbid"
-      },
-      {
-        "selector": "variable",
-        "modifiers": [
-          "const",
-          "global"
-        ],
-        "format": [
-          "camelCase",
-          "snake_case",
-          "UPPER_CASE"
-        ],
-        "leadingUnderscore": "forbid"
-      },
-      {
-        "selector": "method",
-        "format": [
-          "camelCase",
-          "snake_case"
-        ]
-      },
-      {
-        "selector": "memberLike",
-        "modifiers": [
-          "static",
-          "public"
-        ],
-        "format": [
-          "camelCase",
-          "snake_case",
-          "UPPER_CASE"
-        ],
-        "leadingUnderscore": "forbid"
-      },
-      {
-        "selector": "memberLike",
-        "modifiers": [
-          "static",
-          "private"
-        ],
-        "format": [
-          "camelCase",
-          "snake_case",
-          "UPPER_CASE"
-        ],
-        "leadingUnderscore": "require"
-      },
-      {
-        "selector": "memberLike",
-        "modifiers": [
-          "static",
-          "protected"
-        ],
-        "format": [
-          "camelCase",
-          "snake_case",
-          "UPPER_CASE"
-        ],
-        "leadingUnderscore": "require"
-      },
-      {
-        "selector": "memberLike",
-        "modifiers": [
-          "private"
-        ],
-        "format": [
-          "camelCase",
-          "snake_case"
-        ],
-        "leadingUnderscore": "require"
-      },
-      {
-        "selector": "memberLike",
-        "modifiers": [
-          "protected"
-        ],
-        "format": [
-          "camelCase",
-          "snake_case"
-        ],
-        "leadingUnderscore": "require"
-      },
-      {
-        "selector": "memberLike",
-        "modifiers": [
-          "public"
-        ],
-        "format": [
-          "camelCase",
-          "snake_case"
-        ],
-        "leadingUnderscore": "forbid"
-      },
-      {
-        "selector": "memberLike",
-        "modifiers": [
-          "private",
-          "readonly"
-        ],
-        "format": [
-          "camelCase",
-          "snake_case",
-          "UPPER_CASE"
-        ],
-        "leadingUnderscore": "require"
-      },
-      {
-        "selector": "memberLike",
-        "modifiers": [
-          "protected",
-          "readonly"
-        ],
-        "format": [
-          "camelCase",
-          "snake_case",
-          "UPPER_CASE"
-        ],
-        "leadingUnderscore": "require"
-      },
-      {
-        "selector": "memberLike",
-        "modifiers": [
-          "public",
-          "readonly"
-        ],
-        "format": [
-          "camelCase",
-          "snake_case",
-          "UPPER_CASE"
-        ],
-        "leadingUnderscore": "forbid"
-      },
-      {
-        "selector": "enumMember",
-        "format": [
-          "PascalCase",
-          "UPPER_CASE"
-        ],
-        "leadingUnderscore": "forbid"
-      },
-      {
-        "selector": "typeLike",
-        "format": [
-          "PascalCase",
-          "snake_case"
-        ],
-        "leadingUnderscore": "forbid"
-      }
-    ],
-    "@typescript-eslint/no-unused-vars": "warn",
-    "@typescript-eslint/no-non-null-assertion": "off"
-  }
+	"env": {
+		"es2021": true,
+		"node": true
+	},
+	"extends": [
+		"eslint:recommended",
+		"plugin:@typescript-eslint/recommended"
+	],
+	"parser": "@typescript-eslint/parser",
+	"parserOptions": {
+		"ecmaVersion": 12,
+		"sourceType": "module"
+	},
+	"plugins": [
+		"@typescript-eslint"
+	],
+	"settings": {},
+	"rules": {
+		"@typescript-eslint/explicit-function-return-type": "warn",
+		"@typescript-eslint/no-empty-function": "off",
+		"@typescript-eslint/no-unused-vars": [
+			"warn"
+		],
+		"@typescript-eslint/no-non-null-assertion": "off",
+		"keyword-spacing": "warn",
+		"default-case-last": "warn",
+		"eqeqeq": "error",
+		"no-case-declarations": "error",
+		"dot-notation": "warn",
+		"no-delete-var": "error",
+		"no-else-return": [
+			"warn",
+			{
+				"allowElseIf": true
+			}
+		],
+		"no-empty": "off",
+		"no-multi-str": "warn",
+		"no-throw-literal": "error",
+		"no-unneeded-ternary": "warn",
+		"no-useless-computed-key": "warn",
+		"no-var": "error",
+		"no-with": "error",
+		"prefer-numeric-literals": "error",
+		"require-await": "error",
+		"require-yield": "error",
+		"yoda": [
+			"warn",
+			"never",
+			{
+				"exceptRange": true
+			}
+		],
+		"array-bracket-spacing": [
+			"warn",
+			"never"
+		],
+		"comma-dangle": [
+			"warn",
+			"only-multiline"
+		],
+		"@typescript-eslint/ban-ts-comment": "off",
+		"@typescript-eslint/indent": [
+			"error",
+			"tab"
+		],
+		"linebreak-style": [
+			"error",
+			"windows"
+		],
+		"quotes": [
+			"warn",
+			"single"
+		],
+		"semi": [
+			"warn",
+			"always"
+		],
+		"@typescript-eslint/naming-convention": [
+			"warn",
+			{
+				"selector": "default",
+				"format": null,
+				"leadingUnderscore": "forbid"
+			},
+			{
+				"selector": "property",
+				"modifiers": [
+					"private"
+				],
+				"format": null,
+				"leadingUnderscore": "allow"
+			},
+			{
+				"selector": "property",
+				"modifiers": [
+					"protected"
+				],
+				"format": null,
+				"leadingUnderscore": "allow"
+			}
+		]
+	}
 }

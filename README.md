@@ -30,7 +30,7 @@ table.addRow(['1', '$120', '2'], { override: 4 });
 table.addRow(['72', '$10', '25'], { override: 0 });
 table.addRow(['614', '$1220', '12']);
 
-const field = table.field([inline])
+const embed = new MessageEmbed().addFields(table.field())
 ```
 
 # Output

@@ -1,45 +1,45 @@
 {
-  "name": "embed-table",
-  "version": "2.3.0",
-  "author": "Fyrlex and NonStop",
-  "description": "Easily make nice looking text tables for Discord's embed fields and descriptions.",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
-  "engines": {
-    "node": ">=16.6.0"
-  },
-  "scripts": {
-    "build": "tsc",
-    "docs": "typedoc src/index.ts"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/TreeFarmer/embed-table.git"
-  },
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/TreeFarmer/embed-table/issues"
-  },
-  "homepage": "https://github.com/TreeFarmer/embed-table#readme",
-  "keywords": [
-    "discord",
-    "discordjs",
-    "messageembed",
-    "table"
-  ],
-  "devDependencies": {
-    "@types/node": "^16.7.1",
-    "@typescript-eslint/eslint-plugin": "^4.29.3",
-    "@typescript-eslint/parser": "^4.29.3",
-    "eslint": "^7.32.0",
-    "typedoc": "^0.22.4",
-    "typedoc-plugin-extras": "^2.2.0",
-    "typescript": "^4.3.5"
-  },
-  "directories": {
-    "doc": "docs"
-  },
-  "dependencies": {
-    "discord.js": "^13.1.0"
-  }
+	"name": "embed-table",
+	"version": "2.3.1",
+	"description": "Easily make nice looking text tables for Discord's embed fields and descriptions.",
+	"main": "dist/index.js",
+	"types": "dist/index.d.ts",
+	"engines": {
+		"node": ">=17.3.1"
+	},
+	"scripts": {
+		"build": "tsc",
+		"docs": "typedoc src/index.ts"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/TreeFarmer/embed-table.git"
+	},
+	"author": "Fyrlex and NonStop",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/TreeFarmer/embed-table/issues"
+	},
+	"homepage": "https://embed-table.treefarmer.xyz",
+	"keywords": [
+		"discord",
+		"discordjs",
+		"messageembed",
+		"table"
+	],
+	"dependencies": {
+		"discord.js": "^13.2.0"
+	},
+	"devDependencies": {
+		"@types/node": "^16.7.1",
+		"@typescript-eslint/eslint-plugin": "^4.29.3",
+		"@typescript-eslint/parser": "^4.29.3",
+		"eslint": "^7.32.0",
+		"typedoc": "^0.22.11",
+		"typedoc-plugin-extras": "^2.2.0",
+		"typescript": "^4.3.5"
+	},
+	"directories": {
+		"doc": "docs"
+	}
 }
