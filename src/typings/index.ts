@@ -10,7 +10,7 @@ export interface TableData {
 	/**
 	 * The starting indexes for each column of data
 	 */
-	rowIndexes: number[],
+	columnIndexes: number[],
 	/**
 	 * A string to add to the beginning of every row
 	 */
@@ -30,9 +30,15 @@ export interface TableData {
 	whiteSpace?: boolean
 }
 
+export interface RowData {
+	columns: string[];
+	indexes: number[];
+	whiteSpace: boolean;
+}
+
 export interface RowOptionData {
 	/**
 	 * Override the table's default padEnd in the row
 	 */
-	override: number
+	override: number;
 }
