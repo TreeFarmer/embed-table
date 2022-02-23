@@ -9,7 +9,7 @@ export class Table {
 	private readonly titles: string[];
 
 	/**
-	 * The starting indexes for each title in the entire title string
+	 * The starting indexes for each column title in the title string
 	 */
 	private readonly titleIndexes: number[];
 
@@ -21,10 +21,10 @@ export class Table {
 	/**
 	 * The starting indexes for each column of data
 	 */
-	private readonly rowIndexes: number[];
+	private readonly columnIndexes: number[];
 
 	/**
-	 * A string to add to the beginning of every row
+	 * A string to add to the start of every row
 	 */
 	public readonly start: string;
 
@@ -40,7 +40,7 @@ export class Table {
 	public readonly padEnd: number;
 
 	/**
-	 * The Table's generated title
+	 * The Table's generated title string
 	 */
 	public readonly titleString: string;
 
@@ -53,12 +53,12 @@ export class Table {
 	 * Create a new Table
 	 * @param {TableData} data 
 	 */
-	public constructor({ rowIndexes, titleIndexes, titles, end = '', padEnd = 0, start = '', whiteSpace = false }: TableData) {
+	public constructor({ columnIndexes: columnIndexes, titleIndexes, titles, end = '', padEnd = 0, start = '', whiteSpace = false }: TableData) {
 		this.titleString = '';
 		this.titles = titles;
 		this.titleIndexes = titleIndexes;
 		this.rows = [];
-		this.rowIndexes = rowIndexes;
+		this.columnIndexes = columnIndexes;
 		this.start = start;
 		this.end = end;
 		this.padEnd = padEnd;
@@ -66,7 +66,7 @@ export class Table {
 
 		if (this.titles.length !== this.titleIndexes.length) throw new RangeError('The \'titles\' and \'titleIndex\' array must be of the same length.');
 
-		for (let i = 0; i < this.titles.length; i++) this.titleString += this.padColumnTitle(i);
+		for (let i = 0; i < this.titles.length; i++) this.titleString += this.padTitle(i);
 	}
 
 	/**
@@ -76,21 +76,29 @@ export class Table {
 	 * @returns {this}
 	 */
 	public addRow(columns: string[], options?: RowOptionData): this {
-		this.rows.push(this.start + new Row(columns, this.rowIndexes, (this.whiteSpace ?? false), options).toString().padEnd(this.rowIndexes[this.rowIndexes.length - 1]! + (options?.override ?? 0 + this.padEnd), ' ') + this.end);
+		this.rows.push(
+			this.start + new Row({
+				columns,
+				indexes: this.columnIndexes,
+				whiteSpace: this.whiteSpace
+			})
+				.toString()
+				.padEnd(this.columnIndexes[this.columnIndexes.length - 1]! + (options?.override ?? 0 + this.padEnd), ' ') + this.end
+		);
 
 		return this;
 	}
 
 	/**
 	 * Convert the Table to an EmbedField object
-	 * @param {boolean | undefined} inline Whether or not the field is inline
+	 * @param {boolean} [inline = false] Whether or not the field is inline
 	 * @returns {EmbedField} Use this when creating a MessageEmbed
 	 */
-	public field(inline?: boolean): EmbedField {
+	public field(inline = false): EmbedField {
 		const field: EmbedField = {
 			name: this.titleString,
 			value: this.rows.join('\n'),
-			inline: inline ?? false
+			inline: inline
 		};
 
 		this.clear();
@@ -111,15 +119,18 @@ export class Table {
 	 * @param {number} i 
 	 * @returns {string} The padded title
 	 */
-	private padColumnTitle(i: number): string {
-		if (!this.titlesOkay()) throw new RangeError('Length of a \'title\' cannot be longer than the starting index of the next title. Try increasing the value of the subsequent \'titleIndex\'.');
+	private padTitle(i: number): string {
+		if (!this.checkTitles()) {
+			throw new RangeError('Length of a \'title\' cannot be longer than the starting index of the next title. Try increasing the value of the subsequent \'titleIndex\'.');
+		}
 
 		return ' '.repeat(this.titleIndexes[i]! - (this.titleIndexes[i - 1] ?? 0) - (this.titles[i - 1]?.length ?? 0)) + this.titles[i]!.slice(0, (this.titleIndexes[i + 1] ?? Infinity) - this.titleIndexes[i]! - 1);
 	}
 
-	private titlesOkay(): boolean {
-		for (let i = 0; i < this.titles.length - 1; i++)
+	private checkTitles(): boolean {
+		for (let i = 0; i < this.titles.length - 1; i++) {
 			if (this.titles[i]!.length > this.titleIndexes[i + 1]!) return false;
+		}
 
 		return true;
 	}
