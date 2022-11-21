@@ -1,3 +1,9 @@
+export interface EmbedField {
+	name: string;
+	value: string;
+	inline: boolean;
+}
+
 export interface TableData {
 	/**
 	 * An array of titles for the Table
@@ -14,20 +20,28 @@ export interface TableData {
 	/**
 	 * A string to add to the beginning of every row
 	 */
-	start?: string
+	start?: string;
 	/**
 	 * A string to add to the end of every row
 	 */
-	end?: string
+	end?: string;
 	/**
 	 * A pad for the end of each row, before the end
 	 * @see [String.prototype.padEnd()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/padEnd)
 	 */
-	padEnd?: number
+	padEnd?: number;
 	/**
 	 * Whether or not to include the Whitespace character (\u200b) in spacing (not required if using backticks for the start and end)
 	 */
-	whiteSpace?: boolean
+	whiteSpace?: boolean;
+}
+
+export interface TableToFieldOptions extends TableToStringOptions {
+	inline?: boolean;
+}
+
+export interface TableToStringOptions {
+	keepRows?: boolean;
 }
 
 export interface RowData {
