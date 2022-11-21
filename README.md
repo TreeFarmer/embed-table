@@ -13,10 +13,10 @@ Install with `npm install embed-table` and it will be installed.
 - **Make sure** that your `titles`, `titleIndexes` and `columnIndexes` all are the same number of values, or else things get messy. An option to make the field inline is available since the method creates a complete field object. 
 - It is easiet to manage where your data lines up in the columns when using backticks ( ` ) at the start and end of the rows, this makes any character the same width. 
 
-# Basic Usage
+# Basic Usage (with Discord.js v14+)
 ```ts
 import { Table } from 'embed-table';
-import { MessageEmbed } from 'discord.js';
+import { EmbedBuilder } from 'discord.js';
 
 const table = new Table({
   titles: ['Level', 'Money', 'Wins'],
@@ -31,12 +31,14 @@ table.addRow(['1', '$120', '2'], { override: 4 });
 table.addRow(['72', '$10', '25'], { override: 0 });
 table.addRow(['614', '$1220', '12']);
 
-const embed = new MessageEmbed().addFields(table.field())
-
 // Use this 'embed' when sending a message to a channel.
+const embed = new EmbedBuilder().setFields(table.toField());
+
+// Use this 'tableString' in a plain text area, (embed description or a regular message)
+const string = table.toString();
 ```
 
-# Output
+# Embed Output
 ![output](https://i.imgur.com/tQSKSJN.png)
 
 # API
