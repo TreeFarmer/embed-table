@@ -18,14 +18,12 @@ export class Row {
 
 	/**
 	 * Create a new Row to be inserted into a table
-	 * @param {string[]} columns 
-	 * @param {number[]} starts 
-	 * @param {number} pad 
+	 * @param {RowData} options 
 	 */
-	public constructor({ columns, indexes, whiteSpace }: RowData) {
-		this.columns = columns;
-		this.indexes = indexes;
-		this.whiteSpace = whiteSpace;
+	public constructor(options: RowData) {
+		this.columns = options.columns;
+		this.indexes = options.indexes;
+		this.whiteSpace = options.whiteSpace;
 	}
 
 	/**
