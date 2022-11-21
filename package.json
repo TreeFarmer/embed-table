@@ -1,7 +1,8 @@
 {
 	"name": "embed-table",
-	"version": "4.0.2",
+	"version": "4.0.3",
 	"description": "Easily make nice looking text tables for Discord's embed fields and descriptions.",
+	"main": "dist/index.js",
 	"type": "module",
 	"repository": {
 		"type": "git",
