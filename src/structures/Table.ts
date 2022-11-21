@@ -97,14 +97,14 @@ export class Table {
 	 * @param {TableToFieldOptions} options Whether or not the field is inline
 	 * @returns {EmbedField} Use this when creating a MessageEmbed
 	 */
-	public toField(options: TableToFieldOptions): EmbedField {
+	public toField(options?: TableToFieldOptions): EmbedField {
 		const field: EmbedField = {
 			name: this.titleString,
 			value: this.rows.join('\n'),
-			inline: options.inline ?? false
+			inline: options?.inline ?? false
 		};
 
-		if (!options.keepRows) this.clear();
+		if (!options?.keepRows) this.clear();
 
 		return field;
 	}
@@ -114,14 +114,14 @@ export class Table {
 	 * @param {TableToStringOptions} options 
 	 * @returns 
 	 */
-	public toString(options: TableToStringOptions): string {
+	public toString(options?: TableToStringOptions): string {
 		let string = this.titleString;
 
 		for (const row of this.rows) {
 			string += `\n${row}`;
 		}
 
-		if (!options.keepRows) this.clear();
+		if (!options?.keepRows) this.clear();
 
 		return string;
 	}
