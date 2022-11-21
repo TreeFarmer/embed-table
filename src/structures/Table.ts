@@ -1,6 +1,5 @@
-import { EmbedField } from 'discord.js';
 import { Row } from './Row.js';
-import { TableData, RowOptionData } from '../typings/index.js';
+import { TableData, RowOptionData, EmbedField, TableToFieldOptions, TableToStringOptions } from '../typings/index.js';
 
 export class Table {
 	/**
@@ -51,22 +50,26 @@ export class Table {
 
 	/**
 	 * Create a new Table
-	 * @param {TableData} data 
+	 * @param {TableData} options 
 	 */
-	public constructor({ columnIndexes: columnIndexes, titleIndexes, titles, end = '', padEnd = 0, start = '', whiteSpace = false }: TableData) {
+	public constructor(options: TableData) {
 		this.titleString = '';
-		this.titles = titles;
-		this.titleIndexes = titleIndexes;
+		this.titles = options.titles;
+		this.titleIndexes = options.titleIndexes;
 		this.rows = [];
-		this.columnIndexes = columnIndexes;
-		this.start = start;
-		this.end = end;
-		this.padEnd = padEnd;
-		this.whiteSpace = whiteSpace;
+		this.columnIndexes = options.columnIndexes;
+		this.start = options.start ?? '';
+		this.end = options.end ?? '';
+		this.padEnd = options.padEnd ?? 0;
+		this.whiteSpace = options.whiteSpace ?? false;
 
-		if (this.titles.length !== this.titleIndexes.length) throw new RangeError('The \'titles\' and \'titleIndex\' array must be of the same length.');
+		if (this.titles.length !== this.titleIndexes.length) {
+			throw new RangeError('The \'titles\' and \'titleIndex\' array must be of the same length.');
+		}
 
-		for (let i = 0; i < this.titles.length; i++) this.titleString += this.padTitle(i);
+		for (let i = 0; i < this.titles.length; i++) {
+			this.titleString += this.padTitle(i);
+		}
 	}
 
 	/**
@@ -91,19 +94,36 @@ export class Table {
 
 	/**
 	 * Convert the Table to an EmbedField object
-	 * @param {boolean} [inline = false] Whether or not the field is inline
+	 * @param {TableToFieldOptions} options Whether or not the field is inline
 	 * @returns {EmbedField} Use this when creating a MessageEmbed
 	 */
-	public field(inline = false): EmbedField {
+	public toField(options: TableToFieldOptions): EmbedField {
 		const field: EmbedField = {
 			name: this.titleString,
 			value: this.rows.join('\n'),
-			inline: inline
+			inline: options.inline ?? false
 		};
 
-		this.clear();
+		if (!options.keepRows) this.clear();
 
 		return field;
+	}
+
+	/**
+	 * Convert the Table to a string
+	 * @param {TableToStringOptions} options 
+	 * @returns 
+	 */
+	public toString(options: TableToStringOptions): string {
+		let string = this.titleString;
+
+		for (const row of this.rows) {
+			string += `\n${row}`;
+		}
+
+		if (!options.keepRows) this.clear();
+
+		return string;
 	}
 
 	/**
