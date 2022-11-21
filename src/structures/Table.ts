@@ -115,11 +115,7 @@ export class Table {
 	 * @returns 
 	 */
 	public toString(options?: TableToStringOptions): string {
-		let string = this.titleString;
-
-		for (const row of this.rows) {
-			string += `\n${row}`;
-		}
+		const string = this.titleString + '\n' + this.rows.join('\n');
 
 		if (!options?.keepRows) this.clear();
 
