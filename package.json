@@ -2,10 +2,10 @@
   "name": "embed-table",
   "version": "4.0.5",
   "description": "Easily make nice looking text tables for Discord's embed fields and descriptions.",
-  "types": "./lib/cjs/types/index.d.ts",
-  "main": "./lib/cjs/index.js",
+  "types": "./out/cjs/types/index.d.ts",
+  "main": "./out/cjs/index.js",
   "files": [
-    "lib/**/*"
+    "out/**/*"
   ],
   "repository": {
     "type": "git",
@@ -37,9 +37,9 @@
     "doc": "docs"
   },
   "scripts": {
-    "clean": "rm -rf ./lib",
+    "clean": "rm -rf ./out",
     "build": "npm run clean && npm run build:esm && npm run build:cjs",
-    "build:esm": "tsc -p ./configs/tsconfig.esm.json && mv lib/esm/index.js lib/esm/index.mjs",
+    "build:esm": "tsc -p ./configs/tsconfig.esm.json && mv out/esm/index.js out/esm/index.mjs",
     "build:cjs": "tsc -p ./configs/tsconfig.cjs.json",
     "prepack": "npm run build",
     "lint": "eslint --cache --fix"
@@ -47,12 +47,12 @@
   "exports": {
     ".": {
       "import": {
-        "types": "./lib/esm/types/index.d.ts",
-        "default": "./lib/esm/index.mjs"
+        "types": "./out/esm/types/index.d.ts",
+        "default": "./out/esm/index.mjs"
       },
       "require": {
-        "types": "./lib/cjs/types/index.d.ts",
-        "default": "./lib/cjs/index.js"
+        "types": "./out/cjs/types/index.d.ts",
+        "default": "./out/cjs/index.js"
       }
     }
   }
