@@ -79,14 +79,14 @@ export class Table {
 	 * @returns {this}
 	 */
 	public addRow(columns: string[], options?: RowOptionData): this {
-		this.rows.push(options?.url ? '[' : '' +
+		this.rows.push((options?.url ? '[' : '') +
 			this.start + new Row({
 				columns,
 				indexes: this.columnIndexes,
 				whiteSpace: this.whiteSpace
 			})
 				.toString()
-				.padEnd(this.columnIndexes[this.columnIndexes.length - 1]! + (options?.override ?? 0 + this.padEnd), ' ') + this.end + options?.url ? `](${options?.url})` : ''
+				.padEnd(this.columnIndexes[this.columnIndexes.length - 1]! + (options?.override ?? 0 + this.padEnd), ' ') + this.end + (options?.url ? `](${options?.url})` : '')
 		);
 
 		return this;
