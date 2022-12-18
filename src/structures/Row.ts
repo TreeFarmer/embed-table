@@ -33,7 +33,9 @@ export class Row {
 	public toString(): string {
 		let res = '';
 
-		for (let i = 0; i < this.columns.length; i++) res += this.padRow(i);
+		for (let i = 0; i < this.columns.length; i++) {
+			res += this.padRow(i);
+		}
 
 		return res;
 	}
