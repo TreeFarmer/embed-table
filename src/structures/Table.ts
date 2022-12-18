@@ -13,11 +13,6 @@ export class Table {
 	private readonly titleIndexes: number[];
 
 	/**
-	 * The Table's generated rows
-	 */
-	private readonly rows: string[];
-
-	/**
 	 * The starting indexes for each column of data
 	 */
 	private readonly columnIndexes: number[];
@@ -37,6 +32,11 @@ export class Table {
 	 * @see [String.prototype.padEnd()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/padEnd)
 	 */
 	public readonly padEnd: number;
+
+	/**
+	 * The Table's generated rows. Do not modify unless you know what you're doing.
+	 */
+	public readonly rows: string[];
 
 	/**
 	 * The Table's generated title string
@@ -110,7 +110,7 @@ export class Table {
 	}
 
 	/**
-	 * Convert the Table to a string
+	 * Convert the Table to a nice string
 	 * @param {TableToStringOptions} options 
 	 * @returns 
 	 */
@@ -143,6 +143,11 @@ export class Table {
 		return ' '.repeat(this.titleIndexes[i]! - (this.titleIndexes[i - 1] ?? 0) - (this.titles[i - 1]?.length ?? 0)) + this.titles[i]!.slice(0, (this.titleIndexes[i + 1] ?? Infinity) - this.titleIndexes[i]! - 1);
 	}
 
+	/**
+	 * Checks if the title texts are greater than the indexes provided
+	 * Returns true if less than, false if greater than.
+	 * @returns {boolean}
+	 */
 	private checkTitles(): boolean {
 		for (let i = 0; i < this.titles.length - 1; i++) {
 			if (this.titles[i]!.length > this.titleIndexes[i + 1]!) return false;
