@@ -54,5 +54,10 @@ export interface RowOptionData {
 	/**
 	 * Override the table's default padEnd in the row
 	 */
-	override: number;
+	override?: number;
+	/**
+	 * A URL to wrap around the row as a hyperlink.
+	 * Only works with table.toString() inside embed description or table.toField() inside embed field.
+	 */
+	url?: string;
 }
