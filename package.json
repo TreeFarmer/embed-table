@@ -1,43 +1,41 @@
 {
-	"name": "embed-table",
-	"version": "4.2.1",
-	"description": "Easily make nice looking text tables for Discord's embed fields and descriptions.",
-	"main": "dist/index.js",
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/TreeFarmer/embed-table.git"
-	},
-	"author": {
-		"email": "contact@luyx.dev",
-		"name": "Luyx LLC",
-		"url": "https://luyx.dev"
-	},
-	"license": "MIT",
-	"bugs": {
-		"url": "https://github.com/TreeFarmer/embed-table/issues"
-	},
-	"homepage": "https://embed-table.treefarmer.xyz",
-	"keywords": [
-		"discord",
-		"discordjs",
-		"messageembed",
-		"table"
-	],
-	"devDependencies": {
-		"@types/node": "^18.11.17",
-		"eslint": "^8.30.0",
-		"typedoc": "^0.23.23",
-		"typescript": "^4.9.4"
-	},
-	"directories": {
-		"doc": "docs"
-	},
-	"scripts": {
-		"build": "tsc",
-		"lint": "eslint --cache --fix",
-		"start": "npm run lint && npm run build && node build/index.js",
-		"check": "npm run lint && tsc --noEmit",
-		"preinstall": "npm run build",
-		"prepare": "npm run build"
-	}
+  "name": "embed-table",
+  "version": "4.2.1",
+  "description": "Easily make nice looking text tables for Discord's embed fields and descriptions.",
+  "main": "dist/index.js",
+  "files": [
+    "dist/**/*"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "lint": "eslint --cache --fix",
+    "start": "npm run lint && npm run build && node .",
+    "check": "npm run lint && tsc --noEmit",
+    "prepack": "npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TreeFarmer/embed-table.git"
+  },
+  "keywords": [
+    "discord",
+    "discordjs",
+    "messageembed",
+    "table"
+  ],
+  "author": "Luyx LLC <contact@luyx.dev> (https://luyx.dev)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/TreeFarmer/embed-table/issues"
+  },
+  "homepage": "https://embed-table.treefarmer.xyz",
+  "devDependencies": {
+    "@types/node": "^18.11.17",
+    "eslint": "^8.30.0",
+    "typedoc": "^0.23.23",
+    "typescript": "^4.9.4"
+  },
+  "directories": {
+    "doc": "docs"
+  }
 }
