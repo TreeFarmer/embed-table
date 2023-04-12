@@ -1,4 +1,4 @@
-import { RowData } from 'index.js';
+import { RowData } from '../typings/index.js';
 
 export class Row {
 	/**
